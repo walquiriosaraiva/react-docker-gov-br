@@ -1,0 +1,31 @@
+version: '3.8'
+
+networks:
+  react:
+
+services:
+  build:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: build
+    volumes:
+      - ./:/home/node/app
+    entrypoint: ['npm', 'install']
+    networks:
+      - react
+
+  frontend-start:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: frontend-start
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/home/node/app
+    depends_on:
+      - build
+    command: npm run start
+    networks:
+      - react
