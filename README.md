@@ -234,3 +234,18 @@ Os Web Components do GovBR-DS são criados pelo [SERPRO](https://www.serpro.gov.
 ## Licença
 
 Nesse projeto usamos a licença MIT.
+
+## Como executar o projeto com Docker?
+
+### Explicando
+Para executar com Docker, você precisa ter apenas o Docker instalado no seu sistema operacional, não há necessidade de instalação de node ou algo do tipo na sua máquina, tudo vai ser
+gerenciado pelo container docker com a imagem node:20-alpine
+
+```sh
+git clone git@github.com:walquiriosaraiva/react-docker-gov-br.git
+
+docker-compose up -d build
+
+docker-compose up -d frontend-start ou docker-compose up -d
+
+```
