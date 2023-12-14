@@ -1,22 +1,38 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on: 
+name: Push-to-EC2
+
+# Trigger deployment only on push to main branch
+on:
   push:
     branches:
       - main
+
 jobs:
   deploy:
-    name: Deploy
+    name: Deploy to EC2 on master branch push
     runs-on: ubuntu-latest
+
     steps:
-      - name: Check out repository code
+      - name: Checkout the files
         uses: actions/checkout@v2
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-        env: 
-          SSH_PRIVATE_KEY: ${{secrets.DEPLOY}}
-          SOURCE: "./"
+
+      - name: Deploy to Server 1
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.DEPLOY }}
           REMOTE_HOST: "ec2-52-4-175-133.compute-1.amazonaws.com"
           REMOTE_USER: "ubuntu"
           TARGET: "/home/ubuntu"
+
+      - name: Executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: "ec2-52-4-175-133.compute-1.amazonaws.com"
+          username: "ubuntu"
+          key: ${{ secrets.DEPLOY }}
+          script: |
+            sudo apt-get -y update
+            sudo apt-get install -y apache2
+            sudo systemctl start apache2
+            sudo systemctl enable apache2
+            cd home
+            sudo mv * /var/www/html
