@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import logo from 'assets/antt.png'
+
 const Header = () => {
   const [isOpen, setIsOpen] = useState(true)
 
@@ -7,9 +9,9 @@ const Header = () => {
   }
 
   const title = 'Web Components GovBR-DS - Quickstart React'
-  const signature = 'Padrão Digital de Governo'
+  const signature = 'ANTT'
   const image = {
-    src: '/wbc/quickstarts/govbr-ds-wbc-quickstart-react/logo-react.png',
+    src: logo,
     alt: 'Logo de exemplo',
   }
 
