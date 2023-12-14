@@ -39,3 +39,6 @@ jobs:
           script: |            
             cd /home/ubuntu/build
             sudo mv * /var/www/html
+            cd /var/www/html
+            nvm use 20
+            npm start
