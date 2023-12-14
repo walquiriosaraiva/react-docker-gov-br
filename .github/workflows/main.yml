@@ -38,7 +38,5 @@ jobs:
           key: ${{ secrets.DEPLOY }}
           script: |            
             cd /home/ubuntu/build
-            sudo mv * /var/www/html
+            sudo scp -r ./build/* /var/www/html
             cd /var/www/html
-            nvm use 20
-            npm start
