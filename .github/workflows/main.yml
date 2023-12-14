@@ -31,4 +31,5 @@ jobs:
           key: ${{ secrets.DEPLOY }}
           script: |            
             cd /home/ubuntu
+            nvm use 20
             npm install
