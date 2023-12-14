@@ -38,5 +38,5 @@ jobs:
           key: ${{ secrets.DEPLOY }}
           script: |            
             cd /home/ubuntu
-            sudo scp -r ./build/* /var/www/html
+            sudo cp -r ./build/* /var/www/html
             cd /var/www/html
