@@ -19,6 +19,7 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
+      - run: npm run build
 
       - name: Deploy to Server 1
         uses: easingthemes/ssh-deploy@main
