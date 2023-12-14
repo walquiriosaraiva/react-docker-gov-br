@@ -29,10 +29,6 @@ jobs:
           host: "ec2-52-4-175-133.compute-1.amazonaws.com"
           username: "ubuntu"
           key: ${{ secrets.DEPLOY }}
-          script: |
-            sudo apt-get -y update
-            sudo apt-get install -y apache2
-            sudo systemctl start apache2
-            sudo systemctl enable apache2
+          script: |            
             cd /home/ubuntu
             npm install
